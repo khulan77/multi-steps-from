@@ -1,6 +1,6 @@
 export const Success = () => {
   return (
-    <div className="flex flex-col items-start justify-start p-7 gap-2">
+    <div className="flex h-48.25 flex-col items-start justify-start p-7 gap-2">
       <div className="w-15 h-15">
         <img src="pinecone.svg.png" alt="" />
       </div>

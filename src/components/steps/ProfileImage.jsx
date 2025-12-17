@@ -2,7 +2,8 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
-export const ProfileImage = () => {
+// import { Button } from "@/components/ui/Button";
+export const ProfileImage = ({ handleChange }) => {
   return (
     <motion.div
       initial="enter"
@@ -22,7 +23,8 @@ export const ProfileImage = () => {
 
       <input
         type="date"
-        onChange={(e) => setDob(e.target.value)}
+        name="brithDay"
+        onChange={{ handleChange }}
         className="border border-[#cbd5e1] rounded-lg h-11 p-3"
       />
 

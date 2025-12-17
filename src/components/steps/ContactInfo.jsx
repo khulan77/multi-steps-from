@@ -3,7 +3,7 @@ import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
 
-export const ContactInfo = () => {
+export const ContactInfo = ({ handleChange }) => {
   return (
     <motion.div
       initial="enter"
@@ -23,7 +23,9 @@ export const ContactInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="email"
           placeholder="Your email"
+          onChange={handleChange}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -33,7 +35,9 @@ export const ContactInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="phoneNumber"
           placeholder="Your phone number"
+          onChange={handleChange}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -43,7 +47,9 @@ export const ContactInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="password"
           placeholder="Your password"
+          onChange={handleChange}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -53,7 +59,9 @@ export const ContactInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="confirmPassword"
           placeholder="Confirm password"
+          onChange={handleChange}
         />
       </div>
     </motion.div>
