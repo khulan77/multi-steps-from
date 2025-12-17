@@ -1,6 +1,6 @@
 import { ContactInfo, PrivateInfo, ProfileImage, Success } from "@/components";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 const Home = () => {
@@ -30,7 +30,7 @@ const Home = () => {
               onClick={handlePrev}
               className="justify-center items-center rounded-md flex border  border-[#cbd5e1] h-11 w-32 hover:bg-[#d6d8db]"
             >
-              <ChevronLeft className="w-6 h-6" />
+              {/* <ChevronLeft className="w-6 h-6" /> */}
               Back
             </button>
           )}
@@ -40,7 +40,7 @@ const Home = () => {
                     "
           >
             Continue
-            <ChevronRight className="w-6 h-6" />
+            {/* <ChevronRight className="w-6 h-6" /> */}
           </button>
         </div>
       </div>
