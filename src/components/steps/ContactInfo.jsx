@@ -2,8 +2,9 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
+// import { validateStepTwo }  from "@/utils/validators";
 
-export const ContactInfo = ({ handleChange }) => {
+export const ContactInfo = ({ handleChange, formValues, formErrors, setFormErrors }) => {
   return (
     <motion.div
       initial="enter"

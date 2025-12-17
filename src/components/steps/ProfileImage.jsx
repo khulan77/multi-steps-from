@@ -2,8 +2,9 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
+import { validateStepThree } from "../utils/validators";
 // import { Button } from "@/components/ui/Button";
-export const ProfileImage = ({ handleChange }) => {
+export const ProfileImage = ({ handleChange, formValues, formErrors, setFormErrors }) => {
   return (
     <motion.div
       initial="enter"

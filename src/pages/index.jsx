@@ -23,6 +23,7 @@ const Home = () => {
 
   const handleChange = (event) => {
     const { value, name } = event.target;
+    setFormErrors((previous) => ({ ...previous, [name]: "" }));
     setFormValues((previous) => ({ ...previous, [name]: value }));
   };
 
@@ -37,6 +38,8 @@ const Home = () => {
           setDob={setDob}
           handleChange={handleChange}
           formValues={formValues}
+          formErrors={formErrors}
+          setFormErrors={setFormErrors}
         />
         <div
           className={`flex gap-2 

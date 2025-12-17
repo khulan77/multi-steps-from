@@ -2,8 +2,14 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
+import { validateStepOne } from "../utils/validators";
 
-export const PrivateInfo = ({ handleChange }) => {
+export const PrivateInfo = ({ handleChange, formValues, formErrors, setFormErrors}) => {
+const handleSubmit = () => {
+  const  { errors, isValid } = validateStepOne(formValues);
+  setFormErrors(errors)
+};
+
   return (
     <motion.div
       initial="enter"
@@ -52,6 +58,7 @@ export const PrivateInfo = ({ handleChange }) => {
           onChange={handleChange}
         />
       </div>
+      <button onClick={handleSubmit}>Submit</button>
     </motion.div>
   );
 };
