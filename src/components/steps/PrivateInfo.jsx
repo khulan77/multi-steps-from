@@ -2,8 +2,20 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
+import { validateStepOne } from "../utils/validators";
+import { Button } from "@/components/ui/Button";
 
-export const PrivateInfo = () => {
+export const PrivateInfo = ({
+  handleChange,
+  formValues,
+  formErrors,
+  setFormErrors,
+}) => {
+  const handleSubmit = () => {
+    const { errors, isValid } = validateStepOne(formValues);
+    setFormErrors(errors);
+  };
+
   return (
     <motion.div
       initial="enter"
@@ -23,8 +35,13 @@ export const PrivateInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="fristName"
           placeholder="Your frist name"
+          onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] font-normal">
+          {/* {formErrors.fristName} */}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -33,8 +50,13 @@ export const PrivateInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="lastName"
           placeholder="Your last name"
+          onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] font-2.5">
+          {/* {formErrors.lastName} */}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -43,8 +65,16 @@ export const PrivateInfo = () => {
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
           type="text"
+          name="userName"
           placeholder="Your username"
+          onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] font-normal">
+          {/* {formErrors.userName} */}
+        </p>
+      </div>
+      <div>
+        <Button />
       </div>
     </motion.div>
   );
