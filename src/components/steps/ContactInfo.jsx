@@ -2,9 +2,15 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
+import { Button } from "../ui/Button";
 // import { validateStepTwo }  from "@/utils/validators";
 
-export const ContactInfo = ({ handleChange, formValues, formErrors, setFormErrors }) => {
+export const ContactInfo = ({
+  handleChange,
+  formValues,
+  formErrors,
+  setFormErrors,
+}) => {
   return (
     <motion.div
       initial="enter"
@@ -64,6 +70,9 @@ export const ContactInfo = ({ handleChange, formValues, formErrors, setFormError
           placeholder="Confirm password"
           onChange={handleChange}
         />
+      </div>
+      <div>
+        <Button />
       </div>
     </motion.div>
   );

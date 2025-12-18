@@ -1,9 +1,9 @@
-import { ContactInfo, PrivateInfo, ProfileImage, Success } from "@/components";
+import { PrivateInfo } from "@/components/steps/PrivateInfo";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+// import { PrivateInfo, ContactInfo, ProfileImage, Success } from "@/components";
 import { initialValues } from "@/constants/initial";
 import { useState } from "react";
-// import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/Button";
 
 const Home = () => {
   const [step, setStep] = useState(0);
@@ -13,7 +13,7 @@ const Home = () => {
   const [dob, setDob] = useState(2);
   const handleCont = () => {
     if (step === 2 && !dob) return;
-    if (step < steps.length - 1) {
+    if (step < Container.length - 1) {
       setStep(step + 1);
     }
   };
@@ -27,21 +27,20 @@ const Home = () => {
     setFormValues((previous) => ({ ...previous, [name]: value }));
   };
 
-  const steps = [PrivateInfo, ContactInfo, ProfileImage, Success];
-  console.log(formValues);
-  const Container = steps[step];
+  // const Container = [PrivateInfo];
 
   return (
     <div className="min-h-screen flex  items-center justify-center bg-[#f4f4f4] p-7 font-semibold ">
       <div className="bg-white  flex gap-7 flex-col rounded-md w-120 text-center">
-        <Container
+        <PrivateInfo />
+        {/* <Container
           setDob={setDob}
           handleChange={handleChange}
           formValues={formValues}
           formErrors={formErrors}
           setFormErrors={setFormErrors}
-        />
-        <div
+        /> */}
+        {/* <div
           className={`flex gap-2 
                     justify-center items-center p-7 ${
                       step === 0 ? "mt-31" : "mt-10"
@@ -59,14 +58,13 @@ const Home = () => {
           {step < steps.length - 1 && (
             <button
               onClick={handleCont}
-              className="bg-black h-11 w-104 flex justify-center items-center font-medium rounded-md text-white 
-                    "
+              className="bg-black h-11 w-104 flex justify-center items-center font-medium rounded-md text-white"
             >
               Continue {step + 1}/3
               <ChevronRight className="w-6 h-6" />
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

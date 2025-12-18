@@ -3,12 +3,18 @@ import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
 import { validateStepOne } from "../utils/validators";
+import { Button } from "@/components/ui/Button";
 
-export const PrivateInfo = ({ handleChange, formValues, formErrors, setFormErrors}) => {
-const handleSubmit = () => {
-  const  { errors, isValid } = validateStepOne(formValues);
-  setFormErrors(errors)
-};
+export const PrivateInfo = ({
+  handleChange,
+  formValues,
+  formErrors,
+  setFormErrors,
+}) => {
+  const handleSubmit = () => {
+    const { errors, isValid } = validateStepOne(formValues);
+    setFormErrors(errors);
+  };
 
   return (
     <motion.div
@@ -33,6 +39,9 @@ const handleSubmit = () => {
           placeholder="Your frist name"
           onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] font-normal">
+          {/* {formErrors.fristName} */}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -45,6 +54,9 @@ const handleSubmit = () => {
           placeholder="Your last name"
           onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] font-2.5">
+          {/* {formErrors.lastName} */}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -57,8 +69,13 @@ const handleSubmit = () => {
           placeholder="Your username"
           onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] font-normal">
+          {/* {formErrors.userName} */}
+        </p>
       </div>
-      <button onClick={handleSubmit}>Submit</button>
+      <div>
+        <Button />
+      </div>
     </motion.div>
   );
 };
