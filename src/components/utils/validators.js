@@ -7,17 +7,16 @@ export const validateStepOne = (formValues) => {
     errors.lastName = "Овгоо оруулна уу";
   }
   if (isEmpty(formValues.userName)) {
-    errors.lastName = "Хэрэглэгчийн нэрээ оруулна уу";
+    errors.userName = "Хэрэглэгчийн нэрээ оруулна уу";
   }
   if (isEmpty(formValues.fristName)) {
-    errors.lastName = "Нэрээ оруулна уу";
+    errors.fristName = "Нэрээ оруулна уу";
   }
 
   const isValid = Object.keys(errors).length === 0;
 
   return { errors, isValid };
 };
-
 
 export const validateStepTwo = (formValues) => {
   const errors = {};
@@ -45,6 +44,9 @@ export const validateStepThree = (formValues) => {
 
   if (isEmpty(formValues.birthDay)) {
     errors.birthDay = "Төрсөн огноо оруулна уу";
+  }
+  if (isEmpty(formValues.profile)) {
+    errors.profile = "Профайл зураг оруулна уу";
   }
 
   const isValid = Object.keys(errors).length === 0;

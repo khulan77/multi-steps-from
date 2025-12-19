@@ -1,27 +1,24 @@
-import { ChevronLeft, ChevronRight, Container } from "lucide-react";
-import { useState } from "react";
-import { initialValues } from "@/constants/initial"
-
-
-
-export const Button = ({ step, stepsLength, handlePrev, handleCont }) => {
+import { ChevronLeft, ChevronRight } from "lucide-react";
+export const Button = ({ step, totalSteps, handlePrev, handleSubmit }) => {
   return (
-    <div className="flex gap-2 justify-center items-center p-7">
-      {step > 0 && step < stepsLength && (
+    <div className="flex gap-3 flex-row-reverse pt-30">
+      {step >= 0 && (
         <button
+          onClick={handleSubmit}
+          className="bg-black h-11 w-full flex justify-center items-center font-medium px-3 py-[10] rounded-md text-white cursors-pointer"
+        >
+          Continue {step + 1}/ {totalSteps - 1}
+          <ChevronRight className="w-6 h-6" />
+        </button>
+      )}
+      {step > 0 && (
+        <button
+          className="bg-black h-11 w-50 flex justify-center items-center font-medium px-3 py-[10] rounded-md text-white cursors-pointer"
           onClick={handlePrev}
-          className="flex items-center gap-1 border border-[#cbd5e1] h-11 w-32 rounded-md hover:bg-[#d6d8db]"
         >
           <ChevronLeft className="w-6 h-6" /> Back
         </button>
       )}
-
-      <button
-        onClick={handleCont}
-        className="bg-black h-11 w-104 flex justify-center items-center font-medium rounded-md text-white"
-      >
-        Continue <ChevronRight className="w-6 h-6" />
-      </button>
     </div>
   );
 };

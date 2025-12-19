@@ -6,6 +6,10 @@ import { validateStepOne } from "../utils/validators";
 import { Button } from "@/components/ui/Button";
 
 export const PrivateInfo = ({
+  step,
+  totalSteps,
+  handlePrev,
+  handleClick,
   handleChange,
   formValues,
   formErrors,
@@ -13,9 +17,12 @@ export const PrivateInfo = ({
 }) => {
   const handleSubmit = () => {
     const { errors, isValid } = validateStepOne(formValues);
-    setFormErrors(errors);
+    if (!isValid) {
+      setFormErrors(errors);
+      return;
+    }
+    handleClick();
   };
-
   return (
     <motion.div
       initial="enter"
@@ -39,11 +46,11 @@ export const PrivateInfo = ({
           placeholder="Your frist name"
           onChange={handleChange}
         />
-        <p className="text-red-500 text-[14px] font-normal">
-          {/* {formErrors.fristName} */}
+        <p className="text-red-500 text-[14px] flex font-normal">
+          {formErrors.fristName}
         </p>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className=" flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
           Last Name <span className="text-[#E14942]">*</span>
         </div>
@@ -54,8 +61,8 @@ export const PrivateInfo = ({
           placeholder="Your last name"
           onChange={handleChange}
         />
-        <p className="text-red-500 text-[14px] font-2.5">
-          {/* {formErrors.lastName} */}
+        <p className="text-red-500 text-[14px] flex font-normal">
+          {formErrors.lastName}
         </p>
       </div>
       <div className="flex flex-col gap-2">
@@ -69,12 +76,18 @@ export const PrivateInfo = ({
           placeholder="Your username"
           onChange={handleChange}
         />
-        <p className="text-red-500 text-[14px] font-normal">
-          {/* {formErrors.userName} */}
+        <p className="text-red-500 text-[14px] flex font-normal">
+          {formErrors.userName}
         </p>
       </div>
       <div>
-        <Button />
+        <Button
+          totalSteps={totalSteps}
+          step={step}
+          handlePrev={handlePrev}
+          handleClick={handleClick}
+          handleSubmit={handleSubmit}
+        />
       </div>
     </motion.div>
   );

@@ -2,15 +2,27 @@ import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
-import { Button } from "../ui/Button";
-// import { validateStepTwo }  from "@/utils/validators";
+import { Button } from "@/components/ui/Button";
+import { validateStepTwo } from "../utils/validators";
 
 export const ContactInfo = ({
+  step,
+  totalSteps,
+  handlePrev,
   handleChange,
+  handleClick,
   formValues,
   formErrors,
   setFormErrors,
 }) => {
+  const handleSubmit = () => {
+    const { errors, isValid } = validateStepTwo(formValues);
+    if (!isValid) {
+      setFormErrors(errors);
+      return;
+    }
+    handleClick();
+  };
   return (
     <motion.div
       initial="enter"
@@ -34,6 +46,12 @@ export const ContactInfo = ({
           placeholder="Your email"
           onChange={handleChange}
         />
+        <p
+          className="text-red-500 
+       flex text-[14px] font-normal"
+        >
+          {formErrors.email}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -46,6 +64,9 @@ export const ContactInfo = ({
           placeholder="Your phone number"
           onChange={handleChange}
         />
+        <p className="text-red-500 flex text-[14px] font-normal">
+          {formErrors.phoneNumber}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -58,6 +79,9 @@ export const ContactInfo = ({
           placeholder="Your password"
           onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] flex font-normal">
+          {formErrors.password}
+        </p>
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex gap-1 font-semibold text-sm">
@@ -70,9 +94,18 @@ export const ContactInfo = ({
           placeholder="Confirm password"
           onChange={handleChange}
         />
+        <p className="text-red-500 text-[14px] flex font-normal">
+          {formErrors.confirmPassword}
+        </p>
       </div>
       <div>
-        <Button />
+        <Button
+          totalSteps={totalSteps}
+          step={step}
+          handlePrev={handlePrev}
+          handleSubmit={handleSubmit}
+          handleClick={handleClick}
+        />
       </div>
     </motion.div>
   );
