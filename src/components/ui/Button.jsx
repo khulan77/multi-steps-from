@@ -13,7 +13,7 @@ export const Button = ({ step, totalSteps, handlePrev, handleSubmit }) => {
       )}
       {step > 0 && (
         <button
-          className="bg-black h-11 w-50 flex justify-center items-center font-medium px-3 py-[10] rounded-md text-white cursors-pointer"
+          className="bg-white h-11 w-50 flex justify-center text-black items-center font-medium px-3 py-[10] rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
           onClick={handlePrev}
         >
           <ChevronLeft className="w-6 h-6" /> Back

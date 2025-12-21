@@ -15,6 +15,7 @@ const Home = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValues);
 
+  //Step+
   const totalSteps = 4;
   const handleClick = () => {
     if (step < totalSteps - 1) {
@@ -22,6 +23,7 @@ const Home = () => {
     }
   };
 
+  //Step-
   const handlePrev = () => {
     if (step > 0) {
       setStep(step - 1);

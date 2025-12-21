@@ -3,8 +3,9 @@ import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
 import { validateStepThree } from "../utils/validators";
-import { initialValues } from "@/constants/initial";
 import { Button } from "@/components/ui/Button";
+import { Trash } from 'lucide-react';
+import { Image } from 'lucide-react';
 
 export const ProfileImage = ({
   step,
@@ -19,35 +20,49 @@ export const ProfileImage = ({
   const inputRef = useRef();
   const [imageUrl, setImageUrl] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
-
+  
+//Photo Click
   const handleBrowserClick = () => {
     if (inputRef.current) {
       inputRef.current.click();
     }
   };
+
+  //Photo 
   const handleUploudImage = (file) => {
     const imageUrl = URL.createObjectURL(file);
     setImageUrl(imageUrl);
 
     setFormValues((pervious) => ({ ...pervious, profile: imageUrl }));
+    console.log("setFormValues:", setFormValues);
+
   };
 
-  const handleChange = (event) => {
+  const handleChanges = (event) => {
     const uploadedImage = Array.from(event.target.files).at(0);
-    handleUploudImage(uploadedImage);
-  };
-  const clearImage = () => {
-    inputRef.current.value = "";
-    setImageUrl("");
 
-    setFormValues((pervious) => ({ ...pervious, profile: "" }));
+    const imageUrl = URL.createObjectURL(uploadedImage);
+    setImageUrl(imageUrl);
+
+    setFormValues((pervious) => ({ ...pervious, profile: imageUrl }));
+    // handleUploudImage(uploadedImage);
   };
+
+  //Photo Clear Button
+  const clearImage = (e) => {
+  e.stopPropagation(); // container click-ийг дарангуйлж орохгүй
+  inputRef.current.value = "";
+  setImageUrl(null);
+  setFormValues((previous) => ({ ...previous, profile: "" }));
+};
+
   const handleDrop = (event) => {
     event.preventDefault();
-    const uploadedImage = Array.from(event.dataTransfer.files).at(0);
-    handleUploudImage(uploadedImage);
-    setIsDragging(false);
+    // const uploadedImage = Array.from(event.dataTransfer.files).at(0);
+    // handleUploudImage(uploadedImage);
+    // setIsDragging(false);
   };
+
   const handleDragOver = (event) => {
     event.preventDefault();
     setIsDragging(true);
@@ -83,7 +98,7 @@ export const ProfileImage = ({
           <input
             type="date"
             name="birthDay"
-            onChange={handleChange}
+            onChange={handleChanges}
             className="border border-[#cbd5e1] rounded-lg w-full h-11 p-3"
           />
         </div>
@@ -103,21 +118,22 @@ export const ProfileImage = ({
           onDragOver={handleDragOver}
           onClick={handleBrowserClick}
           onDragLeave={handleDragLeave}
-          className="h-45 w-full bg-gray-100 rounded-xl flex justify-center items-center "
+          className="relative h-45 w-full bg-gray-100 rounded-md flex  flex-col justify-center items-center border border-black-300 cursor-pointer"
           style={{
             border: isDragging ? "10px dashed aqua" : "2px solid transparent",
           }}
-        >
+        >  
+        <div className="w-7 h-7 rounded-full flex  justify-center items-center overflow-hidden bg-white"><Image className="w-3.5 h-3.5"/></div>  
           {imageUrl ? (
-            <img src={imageUrl} alt="image" width={100} height={100} />
+            <img src={imageUrl} alt="image"  className="w-full h-full object-cover text-center font-bold text-sm" />
           ) : (
-            "Browser or Drag and Drop"
+            <div className="text-sm ">Browser or Drag and Drop</div>
           )}
-          <div onClick={clearImage} style={{ width: 50, heigth: 50 }}>
-            cc
+          <div onClick={clearImage} className="w-6 h-6 absolute top-2 right-2 hidden ml-auto cursor-pointer flex justify-center items-center bg-white rounded-full">
+              <Trash className="w-4 h-4 text-red-500" />
           </div>
         </div>
-        <input type="file" hidden ref={inputRef} onChange={handleChange} />
+        <input type="file" hidden ref={inputRef} onChange={handleChanges} />
       </div>
       <div>
         <Button
@@ -126,6 +142,8 @@ export const ProfileImage = ({
           handlePrev={handlePrev}
           handleClick={handleClick}
           handleSubmit={handleSubmit}
+          formValues={formValues}
+          setFormValues={setFormValues}
         />
       </div>
     </motion.div>
