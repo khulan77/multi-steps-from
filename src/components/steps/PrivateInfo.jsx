@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { Header } from "@/components/layer/Header";
 import { motion } from "framer-motion";
@@ -40,7 +42,7 @@ export const PrivateInfo = ({
           Frist Name <span className="text-[#E14942]">*</span>
         </div>
         <input
-          className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
+          className="flex pl-4 w-104 h-11 border-[1px] border-gray-100 rounded -md focus:outline-none focus:ring-gray-100"
           type="text"
           name="fristName"
           placeholder="Your frist name"
@@ -55,7 +57,7 @@ export const PrivateInfo = ({
           Last Name <span className="text-[#E14942]">*</span>
         </div>
         <input
-          className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
+          className="flex pl-4 w-104 h-11 border-[1px] border-gray-100 rounded -md focus:outline-none focus:ring-gray-100"
           type="text"
           name="lastName"
           placeholder="Your last name"
@@ -70,7 +72,7 @@ export const PrivateInfo = ({
           Username <span className="text-[#E14942]">*</span>
         </div>
         <input
-          className="flex pl-4 w-104 h-11 border-[1px] border-[#cbd5e1] rounded -md focus:outline-none focus:ring-blue-300"
+          className="flex pl-4 w-104 h-11 border-[1px] border-gray-100 rounded-md focus:outline-none focus:ring-gray-100"
           type="text"
           name="userName"
           placeholder="Your username"
@@ -91,4 +93,4 @@ export const PrivateInfo = ({
       </div>
     </motion.div>
   );
-};
+}; 

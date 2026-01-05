@@ -30,6 +30,7 @@ const Home = () => {
     }
   };
 
+  //Input Value
   const handleChange = (event) => {
     const { value, name } = event.target;
     setFormErrors((previous) => ({ ...previous, [name]: "" }));
