@@ -50,6 +50,7 @@ const Home = () => {
           formValues={formValues}
           formErrors={formErrors}
           setFormErrors={setFormErrors}
+           setFormValues={setFormValues} 
         />
       </div>
     </div>

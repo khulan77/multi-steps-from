@@ -1,24 +1,32 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight,ChevronLeft  } from "lucide-react";
+
 export const Button = ({ step, totalSteps, handlePrev, handleSubmit }) => {
+  // Form-ийн зөвхөн 3 алхамыг тоолох
+  const displayStep = step + 1 > 3 ? 3 : step + 1;
+
   return (
-    <div className="flex gap-3 flex-row-reverse pt-30">
-      {step >= 0 && (
-        <button
-          onClick={handleSubmit}
-          className="bg-black h-11 w-full flex justify-center items-center font-medium px-3 py-[10] rounded-md text-white cursors-pointer"
-        >
-          Continue {step + 1}/ {totalSteps - 1}
-          <ChevronRight className="w-6 h-6" />
-        </button>
-      )}
+    <div className="flex justify-between mt-20 gap-4">
       {step > 0 && (
         <button
-          className="bg-white h-11 w-50 flex justify-center text-black items-center font-medium px-3 py-[10] rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+          type="button"
           onClick={handlePrev}
-        >
-          <ChevronLeft className="w-6 h-6" /> Back
+          className="px-4 py-2 bg-white flex text-black border border-gray-300 rounded-md"
+        >   <ChevronLeft />
+          Back
         </button>
       )}
+
+      <button
+        type="button"
+        onClick={handleSubmit}
+        className="px-4 py-2 w-full  bg-black flex justify-center items-center text-white rounded-md"
+      >
+        {step === 2 ? "Continue" : "Continue"}{" "}
+        <span className="ml-2 text-l font-semibold">
+          {displayStep}/3
+        </span>
+        <ChevronRight className="ml-2 w-5 h-5" />
+      </button>
     </div>
   );
 };
