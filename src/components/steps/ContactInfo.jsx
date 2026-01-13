@@ -49,7 +49,7 @@ export const ContactInfo = ({
           className="pl-4 h-11 border border-gray-300 rounded-md"
           placeholder="Your email"
         />
-        <p className="text-red-500 text-sm">{formErrors.email}</p>
+        <p className="text-red-500 text-sm flex">{formErrors.email}</p>
       </div>
       <div className="flex flex-col gap-2">
         <label className="font-semibold text-sm flex">
@@ -62,7 +62,7 @@ export const ContactInfo = ({
           className="pl-4 h-11 border border-gray-300 rounded-md"
           placeholder="Your phone number"
         />
-        <p className="text-red-500 text-sm">{formErrors.phoneNumber}</p>
+        <p className="text-red-500 text-sm flex">{formErrors.phoneNumber}</p>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -88,7 +88,7 @@ export const ContactInfo = ({
           </button>
         </div>
 
-        <p className="text-red-500 text-sm">{formErrors.password}</p>
+        <p className="text-red-500 text-sm flex">{formErrors.password}</p>
       </div>
       <div className="flex flex-col gap-2">
         <label className="font-semibold text-sm flex">

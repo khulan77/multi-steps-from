@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { animationVariant } from "@/constants/animation-variant";
 import { validateStepOne } from "../utils/validators";
 import { Button } from "@/components/ui/Button";
-// import { Success } from "./Success";
 export const PrivateInfo = ({
   step,
   totalSteps,
@@ -22,7 +21,7 @@ export const PrivateInfo = ({
     setFormErrors(errors);
     return;
   }
-  handleClick(); // validation амжилттай бол дараагийн step рүү шилжүүлэх
+  handleClick(); 
 };
 
   return (
@@ -49,7 +48,7 @@ export const PrivateInfo = ({
           placeholder="Your frist name"
           onChange={handleChange}
         />
-        <p className="text-red-500 text-[14px] flex font-normal">
+        <p className="text-red-500 text-[14px]  flex font-semibold">
           {formErrors.fristName}
         </p>
       </div>
@@ -65,7 +64,7 @@ export const PrivateInfo = ({
           placeholder="Your last name"
           onChange={handleChange}
         />
-        <p className="text-red-500 text-[14px] flex font-normal">
+        <p className="text-red-500 text-[14px] flex font-semibold">
           {formErrors.lastName}
         </p>
       </div>
@@ -81,7 +80,7 @@ export const PrivateInfo = ({
           placeholder="Your username"
           onChange={handleChange}
         />
-        <p className="text-red-500 text-[14px] flex font-normal">
+        <p className="text-red-500 text-[14px] flex font-semibold">
           {formErrors.userName}
         </p>
       </div>
@@ -97,4 +96,4 @@ export const PrivateInfo = ({
       </div>
     </motion.div>
   );
-}; 
+};
