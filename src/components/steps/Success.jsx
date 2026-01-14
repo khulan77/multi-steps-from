@@ -12,7 +12,7 @@ export const Success = () => {
   }, []);
 
   return (
-    <div className="flex h-48.25 flex-col font-semibold p-7 gap-2">
+    <div className="flex  flex-col font-semibold p-7 gap-2">
       <div className="w-15 h-15">
         <Image
           src="/pinecone.svg.png"
@@ -30,13 +30,17 @@ export const Success = () => {
         We have received your submission. Thank you!
       </div>
       <button
-  onClick={() => {
-    localStorage.removeItem("step");
-    localStorage.removeItem("formValues");
-    window.location.reload();
-  }}
->
-</button>
+      className="flex text-[#8e8e8e]"
+       onClick={() => {
+          localStorage.removeItem("step");
+          localStorage.removeItem("formValues");
+          window.location.reload();
+         
+        }}
+      >
+        Start again
+      </button>
+
 
     </div>
   );
