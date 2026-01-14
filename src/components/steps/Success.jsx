@@ -36,7 +36,6 @@ export const Success = () => {
     window.location.reload();
   }}
 >
-  Start again
 </button>
 
     </div>
