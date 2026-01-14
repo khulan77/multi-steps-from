@@ -24,6 +24,12 @@ export const PrivateInfo = ({
   handleClick(); 
 };
 
+  if (step === totalSteps - 1) {
+    localStorage.removeItem("formValues");
+    localStorage.removeItem("step");
+    setStep(0);
+  }
+
   return (
     <motion.div
       initial="enter"
@@ -37,9 +43,9 @@ export const PrivateInfo = ({
         <Header />
       </div>
       <div className="flex flex-col gap-2 pt-7">
-        <div className="flex gap-1 font-semibold text-sm">
+        <label className="flex gap-1 font-semibold text-sm">
           Frist Name <span className="text-[#E14942]">*</span>
-        </div>
+        </label>
         <input
           className="flex pl-4 w-104 h-11 border-[1px] border-gray-300 rounded -md focus:outline-none focus:ring-gray-100"
           type="text"

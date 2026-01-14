@@ -16,11 +16,13 @@ export const ProfileImage = ({
   setFormValues,
   setFormErrors,
 }) => {
-  const inputRef = useRef(null); // ✅ зөв ref
+  const inputRef = useRef(null);
+
+  // ✅ Controlled inputs: эхэнд "" утгатай
   const [imageUrl, setImageUrl] = useState(formValues.profile || "");
   const [isDragging, setIsDragging] = useState(false);
+  const birthDayValue = formValues.birthDay || "";
 
-  // Файл сонгох
   const handleBrowserClick = () => {
     inputRef.current?.click();
   };
@@ -31,20 +33,16 @@ export const ProfileImage = ({
 
     const url = URL.createObjectURL(file);
     setImageUrl(url);
-
-    // formValues-д хадгалах
     setFormValues((prev) => ({ ...prev, profile: url }));
     setFormErrors((prev) => ({ ...prev, profile: "" }));
   };
 
-  // Date input
   const handleDateChange = (event) => {
     const { name, value } = event.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // Image clear
   const clearImage = (e) => {
     e.stopPropagation();
     if (inputRef.current) inputRef.current.value = "";
@@ -52,7 +50,6 @@ export const ProfileImage = ({
     setFormValues((prev) => ({ ...prev, profile: "" }));
   };
 
-  // Drag & drop
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files?.[0];
@@ -70,7 +67,7 @@ export const ProfileImage = ({
       setFormErrors(errors);
       return;
     }
-    handleClick(); // Success рүү шилжүүлэх
+    handleClick();
   };
 
   return (
@@ -84,6 +81,7 @@ export const ProfileImage = ({
     >
       <Header />
 
+      {/* Date of Birth */}
       <div className="flex flex-col gap-3">
         <label className="font-semibold text-sm flex">
           Date of birth <span className="text-red-500 ">*</span>
@@ -91,7 +89,7 @@ export const ProfileImage = ({
         <input
           type="date"
           name="birthDay"
-          value={formValues.birthDay}
+          value={birthDayValue} // ✅ empty string fallback
           onChange={handleDateChange}
           className="border border-gray-300 rounded-lg h-11 p-3"
         />
@@ -100,7 +98,7 @@ export const ProfileImage = ({
         )}
       </div>
 
-      {/* Image */}
+      {/* Profile Image */}
       <label className="font-semibold text-sm flex">
         Profile image <span className="text-red-500">*</span>
       </label>
