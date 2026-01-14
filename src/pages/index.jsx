@@ -1,46 +1,79 @@
+"use client";
+
 import {
   PrivateInfo,
   ContactInfo,
   ProfileImage,
   Success,
 } from "@/components/steps";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { initialValues } from "@/constants/initial";
 
 const Home = () => {
-  //Step value
+  // Step
   const [step, setStep] = useState(0);
 
-  //Key Value
+  // Form values + errors
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialValues);
 
-  //Step+
   const totalSteps = 4;
+
+  useEffect(() => {
+    const savedValues = localStorage.getItem("formValues");
+    const savedStep = localStorage.getItem("step");
+
+    if (savedValues) {
+      setFormValues(JSON.parse(savedValues));
+    }
+
+    if (savedStep !== null) {
+      setStep(Number(savedStep));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("formValues", JSON.stringify(formValues));
+  }, [formValues]);
+
+  useEffect(() => {
+    localStorage.setItem("step", step);
+  }, [step]);
+
+  // Step +
   const handleClick = () => {
     if (step < totalSteps - 1) {
-      setStep(step + 1);
+      setStep((prev) => prev + 1);
     }
   };
 
-  //Step-
+  // Step -
   const handlePrev = () => {
     if (step > 0) {
-      setStep(step - 1);
+      setStep((prev) => prev - 1);
     }
   };
 
-  //Input Value
+  // Input change
   const handleChange = (event) => {
-    const { value, name } = event.target;
-    setFormErrors((previous) => ({ ...previous, [name]: "" }));
-    setFormValues((previous) => ({ ...previous, [name]: value }));
+    const { name, value } = event.target;
+
+    setFormErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
+
   const Container = [PrivateInfo, ContactInfo, ProfileImage, Success][step];
 
   return (
-    <div className="min-h-screen flex  items-center justify-center bg-[#f4f4f4] p-7 font-semibold ">
-      <div className="bg-white  flex gap-7 flex-col rounded-md w-120 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-[#f4f4f4] p-7 font-semibold">
+      <div className="bg-white flex gap-7 flex-col rounded-md w-120 text-center">
         <Container
           totalSteps={totalSteps}
           step={step}
@@ -50,10 +83,11 @@ const Home = () => {
           formValues={formValues}
           formErrors={formErrors}
           setFormErrors={setFormErrors}
-           setFormValues={setFormValues} 
+          setFormValues={setFormValues}
         />
       </div>
     </div>
   );
 };
+
 export default Home;
