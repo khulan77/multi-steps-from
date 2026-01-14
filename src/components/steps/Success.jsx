@@ -29,6 +29,16 @@ export const Success = () => {
       <div className="text-lg  flex text-[#8e8e8e]">
         We have received your submission. Thank you!
       </div>
+      <button
+  onClick={() => {
+    localStorage.removeItem("step");
+    localStorage.removeItem("formValues");
+    window.location.reload();
+  }}
+>
+  Start again
+</button>
+
     </div>
   );
 };
