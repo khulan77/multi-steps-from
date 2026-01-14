@@ -1,4 +1,5 @@
-import { isEmpty } from "./validators-utils";
+
+import { isEmpty,isEmail,isPhoneNumber } from "./validators-utils";
 
 export const validateStepOne = (formValues) => {
   const errors = {};
@@ -24,32 +25,39 @@ export const validateStepTwo = (formValues) => {
   // email
   if (isEmpty(formValues.email)) {
     errors.email = "Имэйл хаягаа оруулна уу";
+  } else if (!isEmail(formValues.email)) {
+    errors.email = "Имэйл хаяг буруу байна";
   }
 
-  // phone
+  // phone number
   if (isEmpty(formValues.phoneNumber)) {
     errors.phoneNumber = "Утасны дугаараа оруулна уу";
+  } else if (!isPhoneNumber(formValues.phoneNumber)) {
+    errors.phoneNumber =
+      "Утасны дугаар буруу байна (+976XXXXXXXX)";
   }
 
   // password
   if (isEmpty(formValues.password)) {
     errors.password = "Нууц үгээ оруулна уу";
-  } else {
-    if (formValues.password.length < 8) {
-      errors.password = "Нууц үг дор хаяж 8 тэмдэгтэй байх ёстой";
-    } else if (
-      !/[A-Za-z]/.test(formValues.password) ||
-      !/[0-9]/.test(formValues.password)
-    ) {
-      errors.password = "Нууц үг үсэг болон тоо агуулсан байх ёстой";
-    }
+  } else if (formValues.password.length < 8) {
+    errors.password =
+      "Нууц үг дор хаяж 8 тэмдэгтэй байх ёстой";
+  } else if (
+    !/[A-Za-z]/.test(formValues.password) ||
+    !/[0-9]/.test(formValues.password)
+  ) {
+    errors.password =
+      "Нууц үг үсэг болон тоо агуулсан байх ёстой";
   }
 
   // confirm password
   if (isEmpty(formValues.confirmPassword)) {
-    errors.confirmPassword = "Нууц үгээ давтан оруулна уу";
+    errors.confirmPassword =
+      "Нууц үгээ давтан оруулна уу";
   } else if (formValues.password !== formValues.confirmPassword) {
-    errors.confirmPassword = "Нууц үг таарахгүй байна";
+    errors.confirmPassword =
+      "Нууц үг таарахгүй байна";
   }
 
   return {
@@ -57,6 +65,7 @@ export const validateStepTwo = (formValues) => {
     isValid: Object.keys(errors).length === 0,
   };
 };
+
 
 
 export const validateStepThree = (formValues) => {
