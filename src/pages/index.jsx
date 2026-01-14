@@ -9,22 +9,34 @@ import {
 import { useEffect, useState } from "react";
 import { initialValues } from "@/constants/initial";
 
+const initialErrors = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  image: "",
+};
+
 const Home = () => {
   // Step
   const [step, setStep] = useState(0);
 
   // Form values + errors
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(initialErrors);
 
   const totalSteps = 4;
 
+  // 🔹 Load from localStorage (SAFE)
   useEffect(() => {
     const savedValues = localStorage.getItem("formValues");
     const savedStep = localStorage.getItem("step");
 
     if (savedValues) {
-      setFormValues(JSON.parse(savedValues));
+      setFormValues({
+        ...initialValues,
+        ...JSON.parse(savedValues),
+      });
     }
 
     if (savedStep !== null) {
@@ -32,12 +44,14 @@ const Home = () => {
     }
   }, []);
 
+  // 🔹 Save formValues
   useEffect(() => {
     localStorage.setItem("formValues", JSON.stringify(formValues));
   }, [formValues]);
 
+  // 🔹 Save step
   useEffect(() => {
-    localStorage.setItem("step", step);
+    localStorage.setItem("step", String(step));
   }, [step]);
 
   // Step +
@@ -84,7 +98,7 @@ const Home = () => {
           formErrors={formErrors}
           setFormErrors={setFormErrors}
           setFormValues={setFormValues}
-            setStep={setStep}
+          setStep={setStep}
         />
       </div>
     </div>
