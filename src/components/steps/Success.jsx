@@ -23,7 +23,7 @@ export const Success = () => {
       </div>
         
       <div className="text-[#202124] text-[26px] flex font-semibold">
-        You're All Set 🔥
+        You're All Set 🔥🔥🔥
       </div>
 
       <div className="text-lg  flex text-[#8e8e8e]">
